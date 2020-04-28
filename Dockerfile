@@ -16,5 +16,9 @@ COPY install-wp-tests.sh /usr/local/bin/install-wp-tests
 RUN chmod +x /usr/local/bin/install-wp-tests \
 	&& install-wp-tests database root '' database ${WORDPRESS_VERSION}
 
-COPY init-wp.sh /usr/local/bin/
-ENTRYPOINT ["init-wp.sh"]
+COPY init-wp.sh /usr/local/bin/init-wp
+RUN chmod +x /usr/local/bin/init-wp
+ENTRYPOINT ["init-wp"]
+
+CMD ["apache2-foreground"]
+
